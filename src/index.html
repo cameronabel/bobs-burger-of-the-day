@@ -5,10 +5,15 @@
 </head>
 <body>
   <form>
-    <label for="episode-input">Enter a location:</label>
-    <input id="episode-input" type="text" name="episode-input">
+    <label for="burger-input">Enter a burger number:</label>
+    <input id="burger-input" type="number" min="1" max="333" step="1" name="burger-input" required>
     <button type="submit" class="btn-success">Get Burger of the Day</button>
   </form>
   <p id="showResponse"></p>
+  <p id="burgerId"></p>
+  <p id="burgerName"></p>
+  <p id="burgerPrice"></p>
+  <p id="seasonAndEpisode"></p>
+  <p id="plot"></p>
 </body>
 </html>
