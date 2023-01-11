@@ -1,18 +1,16 @@
 export default class EpisodeService {  
   static getEpisode(episodeNumber) {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      const url = `https://bobsburgers-api.herokuapp.com/episodes/${episodeNumber}`;
-      request.addEventListener("loadend", function() {
-        const response = JSON.parse(this.responseText);
-        if (this.status === 200) {
-          resolve([response, episodeNumber]);
+    return fetch(`https://bobsburgers-api.herokuapp.com/episodes/${episodeNumber}`)
+      .then(function(response) {
+        if (!response.ok) {
+          const errorMessage = `${response.status} ${response.statusText}`;
+          throw new Error(errorMessage);
         } else {
-          reject([this, response, episodeNumber]);
-        }
-      }); 
-      request.open("GET", url, true);
-      request.send();
-    });
+          return response.json();
+        }   
+      })
+      .catch(function(error) {
+        return error;
+      });
   }
 }
